@@ -1,25 +1,28 @@
 #!/usr/bin/python3
-"""Module for print_square method."""
+"""
+    Square module
+    Functinons:
+        print_square
+"""
 
 
 def print_square(size):
-    """Methos for printing square with # characters.
-
-    Args:
-        size: length of square side of type int.
-
-    Raises:
-        TypeError: if size is not int.
-        ValueError: if size < 0.
     """
-    if not isinstance(size, int):
+        Function that prints square
+        Args:
+            size: size of square (int)
+        Return: nothing
+    """
+    if type(size) is not int:
         raise TypeError("size must be an integer")
 
     if size < 0:
-        raise ValueError("size must be >= 0.")
+        raise ValueError("size must be >= 0")
 
-    print((("#" * size + "\n") * size), end="")
+    if size == 0:
+        print()
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testfile("tests/4-print_square.txt")
+    for i in range(size):
+        for j in range(size):
+            print("#", end="")
+        print()
