@@ -1,35 +1,20 @@
 #!/usr/bin/python3
+""" MyInt module
+"""
 
 
 class MyInt(int):
-    def __new__(cls, *args, **kwargs):
-        """create new int
-
-        Args:
-            cls (object)
-
-        Returns:
-            int (object)
-        """
-        return super(MyInt, cls).__new__(cls, *args, **kwargs)
+    """ int subclass 'MyInt'
+    """
 
     def __eq__(self, other):
-        """equal operator
-        Args:
-            cls (object)
-
-        Returns:
-            int (object)
+        """ Equal to magic method for MyInt subclass
         """
-        return int(self) != other
+        if type(other) in [int, float]:
+            return not other.__eq__(self)
 
     def __ne__(self, other):
-        """Not equal operator
-
-        Args:
-            cls (object)
-
-        Returns:
-            int (object)
+        """ Not equal to magic method for MyInt subclass
         """
-        return int(self) == other
+        if type(other) in [int, float]:
+            return not other.__ne__(self)

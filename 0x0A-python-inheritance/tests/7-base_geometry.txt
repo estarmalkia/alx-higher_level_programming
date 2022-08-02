@@ -1,103 +1,109 @@
-Importing the function from the module:
-    >>> BaseGeometry = __import__("7-base_geometry").BaseGeometry
+"""
+Interactive test for Geometry
 
-check: module docstring:
-    >>> m = __import__("7-base_geometry").__doc__
-    >>> len(m) > 1
-    True
+Check modules docstring
+>>> mod =  __import__('7-base_geometry').__doc__
+>>> len(mod) > 1
+True
 
-check: class docstring:
-    >>> c = __import__("7-base_geometry").BaseGeometry.__doc__
-    >>> len(c) > 1
-    True
+Import class
+>>> geo = __import__('7-base_geometry').BaseGeometry
 
-check: method docstring:
-    >>> meth1 = __import__("7-base_geometry").BaseGeometry.area.__doc__
-    >>> len(meth1) > 1
-    True
-    >>> meth2 = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
-    >>> len(meth2) > 1
-    True
+Check class docstring
+>>> cls_doc = geo.__doc__
+>>> len(cls_doc) > 1
+True
 
-check: area failure:
-    >>> bg = BaseGeometry()
-    >>> bg.area()
-    Traceback (most recent call last):
-    ...
-    Exception: area() is not implemented
+Check methods docstring
+>>> area =  geo.area.__doc__
+>>> len(area) > 1
+True
+>>> int_val = geo.integer_validator.__doc__
+>>> len(int_val) > 1
+True
 
-Checking too many arguments for area:
-    >>> bg.area(1)
-    Traceback (most recent call last):
-    ...
-    TypeError: area() takes 1 positional argument but 2 were given
+Check area method
+1. One too many arguments
+>>> a = geo()
+>>> try:
+... 	a.area("hello")
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[TypeError] area() takes 1 positional argument but 2 were given
 
-Checking integer validator for passing integer:
-    >>> bg.integer_validator("integer", 10)
+2. Normal functioning
+>>> try:
+... 	a.area()
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[Exception] area() is not implemented
 
-check: integer == 0:
-    >>> bg.integer_validator("integer", 0)
-    Traceback (most recent call last):
-    ...
-    ValueError: integer must be greater than 0
+Check integer_validator method
+1. Few argument
+>>> try:
+... 	a.integer_validator()
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[TypeError] integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-check: integer < 0;
-    >>> bg.integer_validator("integer", -15)
-    Traceback (most recent call last):
-    ...
-    ValueError: integer must be greater than 0
+2. One too many arguments
+>>> try:
+... 	a.integer_validator("name", 1, 2)
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[TypeError] integer_validator() takes 3 positional arguments but 4 were given
 
-check: non-integer types:
-    >>> bg.integer_validator("bool", True)
-    Traceback (most recent call last):
-    ...
-    TypeError: bool must be an integer
-    >>> bg.integer_validator("float", 1.9)
-    Traceback (most recent call last):
-    ...
-    TypeError: float must be an integer
-    >>> bg.integer_validator("complex", complex(1, 1))
-    Traceback (most recent call last):
-    ...
-    TypeError: complex must be an integer
-    >>> bg.integer_validator("string", "123")
-    Traceback (most recent call last):
-    ...
-    TypeError: string must be an integer
-    >>> bg.integer_validator("tuple", (1, 2, 3))
-    Traceback (most recent call last):
-    ...
-    TypeError: tuple must be an integer
-    >>> bg.integer_validator("list", [1, 2, 3])
-    Traceback (most recent call last):
-    ...
-    TypeError: list must be an integer
-    >>> bg.integer_validator("dict", {"name": "Hol"})
-    Traceback (most recent call last):
-    ...
-    TypeError: dict must be an integer
-    >>> bg.integer_validator("set", {"name", "Hol"})
-    Traceback (most recent call last):
-    ...
-    TypeError: set must be an integer
-    >>> bg.integer_validator("frozenset", frozenset(["hello", "friends"]))
-    Traceback (most recent call last):
-    ...
-    TypeError: frozenset must be an integer
-    >>> bg.integer_validator("bytes", b"bytes")
-    Traceback (most recent call last):
-    ...
-    TypeError: bytes must be an integer
+3. Right number of arguments
+>>> try:
+... 	a.integer_validator("age", 17)
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+>>>
 
-check: no arguments to integer_validator:
-    >>> bg.integer_validator()
-    Traceback (most recent call last):
-    ...
-    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+4 Value and Type Error Scenarios
+a. pass value as string
+>>> try:
+... 	a.integer_validator("year", "2022")
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[TypeError] year must be an integer
 
-check: only 1 argument to integer_validator:
-    >>> bg.integer_validator("integer")
-    Traceback (most recent call last):
-    ...
-    TypeError: integer_validator() missing 1 required positional argument: 'value'
+b. pass value as float
+>>> try:
+... 	a.integer_validator("year", 2022.2)
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[TypeError] year must be an integer
 
+c. pass value as None
+>>> try:
+... 	a.integer_validator("year", None)
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[TypeError] year must be an integer
+
+d. pass value less than zero
+>>> try:
+... 	a.integer_validator("age", -1)
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[ValueError] age must be greater than 0
+
+e. pass value as 0
+>>> try:
+... 	a.integer_validator("age", 0)
+... except Exception as e:
+...	print("[{}] {}".format(e.__class__.__name__, e))
+...
+[ValueError] age must be greater than 0
+>>>
+"""

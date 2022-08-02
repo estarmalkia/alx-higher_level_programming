@@ -1,34 +1,26 @@
 #!/usr/bin/python3
+""" Square module
+"""
+base_class = __import__('9-rectangle').Rectangle
 
 
-Rectangle = __import__('9-rectangle').Rectangle
-"""Define: Square class"""
-
-
-class Square(Rectangle):
-    """Represents a Square
-
-    Attributes:
-        __width (int): rectangle width
-        __height (int): rectangle height
+class Square(base_class):
+    """ Square class: subclass of Rectanlge class
     """
 
     def __init__(self, size):
-        """Initializes a Square
-
-        Args:
-            width (int): square width
-            heigth (int): square heigth
-
-        Returns: None
+        """ Instantiation method
+            Args:
+                size(int): size of square
+            Return: nothing
         """
         self.integer_validator("size", size)
         self.__size = size
         super().__init__(size, size)
 
     def area(self):
-        """calculates the square's area
-        Returns:
-            (int) The area of the rectangle
+        """ Area method to compute Square object's area
+            Args: none
+            Return: area of Square object
         """
-        return self.__size ** 2
+        return self.__size * self.__size

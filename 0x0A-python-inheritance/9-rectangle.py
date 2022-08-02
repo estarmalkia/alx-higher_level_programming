@@ -1,51 +1,33 @@
 #!/usr/bin/python3
+""" Rectangle module
+"""
+base_class = __import__('7-base_geometry').BaseGeometry
 
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
-"""Define: Rectangle class"""
-
-
-class Rectangle(BaseGeometry):
-    """Represents a Rectangle
-    Bases:
-        BaseGeometry (obj): BaseGeometry Class
-
-    Attributes:
-        __width (int): rectangle width
-        __heigth (int): rectangle heigth
+class Rectangle(base_class):
+    """ Subclass of BaseGeometry class
     """
 
     def __init__(self, width, height):
-        """Initializes a Rectangle
-
-        Args:
-            width (int): rectangle width
-            heigth (int): rectangle heigth
-
-        Returns: None
+        """ Instantiation method
+            Args:
+                width (int): rectangle's width
+                height (int): rectangle's height
         """
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+        base_class.integer_validator(self, "width", width)
+        base_class.integer_validator(self, "height", height)
         self.__width = width
         self.__height = height
 
     def area(self):
-        """Calculates rectangle area
-        Args:
-            None
-
-        Returns:
-            int
+        """ Area method to calculate area of rectangle instance / object
+            Args: none
+            Return: area of rectangle
         """
         return self.__width * self.__height
 
     def __str__(self):
-        """printable string representation of the rectangle
-
-        Args:
-            None
-
-        Returns:
-            string
+        """ __str__ magic method to print formated string
+            of rectangle object
         """
-        return "[Rectangle] {:d}/{:d}".format(self.__width, self.__height)
+        return f"[Rectangle] {self.__width}/{self.__height}"

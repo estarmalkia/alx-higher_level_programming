@@ -1,16 +1,14 @@
 #!/usr/bin/python3
-"""Defines: BaseGeometry Square"""
+""" Geometry module
+"""
 
 
 class BaseGeometry:
-    """Represents a BaseGeometry
-
-    Attributes:
-        None
+    """ BaseGeometry class
     """
+
     def area(self):
-        """raise error
-        Returns:
-            The area of the square
+        """ area method that raises exception
+            Args: none
         """
         raise Exception("area() is not implemented")

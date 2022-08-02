@@ -1,24 +1,23 @@
 #!/usr/bin/python3
-"""Defines: BaseGeometry Square"""
+""" Geometry module
+"""
 
 
 class BaseGeometry:
-    """Represents a BaseGeometry
-
-    Attributes:
-        None
+    """ BaseGeometry class
     """
+
     def area(self):
-        """raise error
-        Returns:
-            The area of the square
+        """ area method that raises exception
+            Args: none
         """
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
-        """that validates integer value
-        Returns:
-            None
+        """ method that validates value
+            Args:
+                name (string)
+                value (integer)
         """
         if type(value) is not int:
             raise TypeError("{:s} must be an integer".format(name))

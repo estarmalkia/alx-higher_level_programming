@@ -1,30 +1,16 @@
 #!/usr/bin/python3
-"""Defines: class MyList"""
+""" List module
+"""
 
 
 class MyList(list):
-    """Represents a MyList
-
-    Attributes:
-        None
+    """ List subclass
     """
 
-    def __init__(self):
-        """Initializes a List
-
-        Args:
-            None
-
-        Returns: None
-        """
-        super().__init__
-
     def print_sorted(self):
-        """print sorted list
-
-        Args:
-            None
-
-        Returns: None
+        """ List printing method
         """
-        print(sorted(self))
+        if isinstance(self, list):
+            res = self[:]
+            res.sort()
+            print(res)
